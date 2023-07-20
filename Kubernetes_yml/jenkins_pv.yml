@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jenkins-home
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: standard
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem  # For file-based storage
+  persistentVolumeReclaimPolicy: Retain  # Or use "Delete" if you want to reclaim the storage automatically
+  hostPath:
+    path: /pv
