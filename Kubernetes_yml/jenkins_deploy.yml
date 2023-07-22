@@ -35,7 +35,28 @@ spec:
           volumeMounts:
             - name: jenkins-home
               mountPath: /var/jenkins_home
+#            - name: kube-api-access-wzrlr
+#              readOnly: true
+#              mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      serviceAccountName: jenkins-master
       volumes:
         - name: jenkins-home
           persistentVolumeClaim:
             claimName: jenkins-home  # Name of the PVC created earlier
+#        - name: kube-api-access-wzrlr
+#          projected:
+#            sources:
+#              - serviceAccountToken:
+#        - name: k8s-sidecar
+#          image: kiwigrid/k8s-sidecar:1.24.4
+#          env:
+#            - name: LABEL
+#              value: my-jenkins-config
+#            - name: FOLDER
+#              value: /var/
+#          volumeMounts:
+#            - name: jenkins-home
+#              mountPath: /var/jenkins_home
+#            - name: kube-api-access-wzrlr
+#              readOnly: true
+#              mountPath: /var/run/secrets/kubernetes.io/serviceaccount
